@@ -5,12 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -p tsconfig.app.json --noEmit && vite build",
     "preview": "vite preview",
     "lint": "eslint ."
   },
   "dependencies": {
-    "@vitejs/plugin-react": "latest",
     "gsap": "latest",
     "howler": "latest",
     "react": "latest",
@@ -21,6 +20,7 @@
     "@types/howler": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "latest",
     "eslint": "latest",
     "typescript": "latest",
     "vite": "latest",
