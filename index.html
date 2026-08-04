@@ -1,31 +1,67 @@
 <!doctype html>
 <html lang="it">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#080706" />
-    <meta name="description" content="EscapeApp — escape room cinematografiche interattive." />
-    <title>EscapeApp</title>
-    <style>
-      html,body,#root{min-height:100%;margin:0;background:#080706;color:#eadfce}
-      body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-      .boot-fallback{min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 50% 20%,#231b16 0,#080706 55%)}
-      .boot-card{width:min(520px,100%);padding:30px;border:1px solid rgba(226,198,162,.18);background:rgba(12,10,9,.88);box-shadow:0 30px 100px #000;text-align:center}
-      .boot-card small{letter-spacing:.22em;color:#9e8873}
-      .boot-card h1{margin:12px 0;font-family:Georgia,serif;letter-spacing:.12em}
-      .boot-card p{line-height:1.6;color:#c7b8a8}
-    </style>
-  </head>
-  <body>
-    <div id="root">
-      <div class="boot-fallback">
-        <div class="boot-card">
-          <small>ESCAPEAPP</small>
-          <h1>CARICAMENTO</h1>
-          <p>L’esperienza si sta preparando. Se questa schermata rimane visibile, GitHub Pages deve essere configurato per pubblicare tramite GitHub Actions.</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#080706" />
+  <meta name="description" content="EscapeApp — escape room cinematografiche interattive." />
+  <title>EscapeApp</title>
+  <style>
+    :root{--bg:#080706;--panel:#12100e;--text:#eadfd2;--muted:#a99c8e;--gold:#b88a4a;--red:#8f2529;--line:rgba(234,223,210,.12)}
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}button{font:inherit;color:inherit}.app{min-height:100vh;background:radial-gradient(circle at 72% 18%,rgba(119,85,45,.16),transparent 30%),var(--bg)}
+    .topbar{position:sticky;top:0;z-index:20;height:72px;padding:0 max(18px,5vw);display:flex;align-items:center;justify-content:space-between;background:rgba(8,7,6,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    .brand{border:0;background:none;text-align:left;cursor:pointer}.brand strong{display:block;font-family:Georgia,serif;font-size:1.05rem;letter-spacing:.18em}.brand small{display:block;margin-top:3px;font-size:.55rem;letter-spacing:.2em;color:var(--muted)}
+    .nav{display:flex;gap:8px}.nav button{border:0;background:none;padding:10px 12px;color:var(--muted);cursor:pointer}.nav button.active{color:var(--text)}
+    .hero{min-height:calc(100vh - 72px);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);align-items:center;gap:48px;padding:60px max(18px,7vw);position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,7,6,.95) 0%,rgba(8,7,6,.62) 42%,rgba(8,7,6,.12) 100%),radial-gradient(circle at 75% 40%,rgba(184,138,74,.18),transparent 24%),linear-gradient(135deg,#17120e,#090807 65%);z-index:0}
+    .hero::after{content:"";position:absolute;right:-8%;top:10%;width:56%;height:76%;border:1px solid rgba(184,138,74,.12);background:linear-gradient(145deg,rgba(255,255,255,.025),rgba(0,0,0,.35)),repeating-linear-gradient(90deg,transparent 0 78px,rgba(255,255,255,.025) 79px 80px);box-shadow:inset 0 0 120px #000,0 40px 120px #000;transform:perspective(900px) rotateY(-9deg);z-index:0}
+    .copy,.feature{position:relative;z-index:1}.eyebrow{font-size:.72rem;letter-spacing:.22em;color:var(--gold);font-weight:700}.copy h1{font-family:Georgia,serif;font-weight:500;font-size:clamp(2.8rem,6vw,6.4rem);line-height:.96;margin:18px 0}.copy p{max-width:650px;color:var(--muted);line-height:1.75;font-size:1.05rem}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.primary,.secondary{padding:14px 20px;border-radius:2px;cursor:pointer}.primary{border:1px solid #c69a5b;background:linear-gradient(#b78a49,#815d2f);color:#100d09;font-weight:800}.secondary{border:1px solid var(--line);background:rgba(18,16,14,.72)}
+    .feature{align-self:end;margin-bottom:40px;padding:22px;border:1px solid var(--line);background:rgba(12,10,9,.7);backdrop-filter:blur(12px);box-shadow:0 24px 80px #000}.feature small{letter-spacing:.18em;color:var(--gold)}.feature h2{font-family:Georgia,serif;font-weight:500;margin:10px 0 8px}.feature p{margin:0;color:var(--muted);line-height:1.55}.meta{display:flex;gap:18px;margin-top:16px;font-size:.8rem;color:#d6c5b3}
+    .section{padding:70px max(18px,7vw)}.section h2{font-family:Georgia,serif;font-size:clamp(2rem,4vw,3.7rem);font-weight:500;margin:8px 0 28px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{min-height:220px;padding:22px;border:1px solid var(--line);background:linear-gradient(145deg,#15120f,#0b0908);display:flex;flex-direction:column;justify-content:flex-end}.card span{font-size:.72rem;letter-spacing:.15em;color:var(--gold)}.card h3{font-family:Georgia,serif;font-size:1.5rem;margin:10px 0}.card p{color:var(--muted);line-height:1.55}.mobile-nav{display:none}
+    .modal{position:fixed;inset:0;display:none;place-items:center;padding:18px;background:rgba(0,0,0,.8);z-index:40}.modal.open{display:grid}.modal-card{position:relative;width:min(560px,100%);padding:28px;border:1px solid var(--line);background:#0f0d0b;box-shadow:0 30px 100px #000}.close{position:absolute;right:10px;top:8px;border:0;background:none;font-size:1.8rem;cursor:pointer}.modal-card h2{font-family:Georgia,serif;font-size:2rem}.modal-card p{color:var(--muted);line-height:1.65}
+    @media(max-width:820px){.topbar{height:64px}.nav{display:none}.hero{min-height:calc(100svh - 64px);grid-template-columns:1fr;align-content:end;padding:48px 18px 110px}.hero::after{right:-45%;top:4%;width:120%;height:62%;opacity:.65}.copy h1{font-size:clamp(2.7rem,14vw,4.6rem)}.feature{margin:0}.cards{grid-template-columns:1fr}.mobile-nav{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:repeat(3,1fr);padding:8px 8px max(8px,env(safe-area-inset-bottom));background:rgba(8,7,6,.95);border-top:1px solid var(--line)}.mobile-nav button{border:0;background:none;padding:10px 4px;color:var(--muted)}.mobile-nav button.active{color:var(--text)}.section{padding-bottom:110px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <button class="brand" data-view="home"><strong>ESCAPEAPP</strong><small>IMMERSIVE ESCAPE ROOMS</small></button>
+      <nav class="nav"><button class="active" data-view="home">Home</button><button data-view="rooms">Escape room</button><button data-view="profile">Profilo</button></nav>
+    </header>
+
+    <main id="homeView">
+      <section class="hero">
+        <div class="copy">
+          <div class="eyebrow">IMMERSIVE ESCAPE ROOM EXPERIENCE</div>
+          <h1>Non guardare<br>una stanza.<br>Entraci.</h1>
+          <p>Esperienze narrative, ambientazioni cinematografiche, enigmi fisici e un Director System che reagisce al tuo modo di giocare.</p>
+          <div class="actions"><button class="primary" id="exploreBtn">Esplora le escape room</button><button class="secondary" id="detailsBtn">Scopri la prima storia</button></div>
         </div>
-      </div>
-    </div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+        <aside class="feature"><small>PRIMA ESPERIENZA</small><h2>La Casa di Eleanor</h2><p>Una villa abbandonata. Una bambina scomparsa. Sessanta minuti prima che la casa scelga per te.</p><div class="meta"><span>60 min</span><span>Horror psicologico</span><span>3 finali</span></div></aside>
+      </section>
+
+      <section class="section" id="roomsView">
+        <div class="eyebrow">CATALOGO</div><h2>Scegli la tua prossima fuga</h2>
+        <div class="cards"><article class="card"><span>DISPONIBILE PROSSIMAMENTE</span><h3>La Casa di Eleanor</h3><p>Esplora una villa vittoriana che cambia mentre ricostruisci la scomparsa di Eleanor Ashcroft.</p></article><article class="card"><span>IN SVILUPPO</span><h3>L’Archivio Proibito</h3><p>Decifra il lavoro del professor Voss prima che l’archivio venga aperto dall’altra parte.</p></article><article class="card"><span>PIATTAFORMA</span><h3>Nuove esperienze</h3><p>Escape room horror, thriller, mistero e fantasy costruite sullo stesso motore cinematografico.</p></article></div>
+      </section>
+    </main>
+
+    <nav class="mobile-nav"><button class="active" data-view="home">Home</button><button data-view="rooms">Stanze</button><button id="mobileDetails">Profilo</button></nav>
+  </div>
+
+  <div class="modal" id="modal"><article class="modal-card"><button class="close" id="closeModal">×</button><div class="eyebrow">PRIMA ESCAPE ROOM</div><h2>La Casa di Eleanor</h2><p>Nel 1968 Eleanor Ashcroft scomparve durante un temporale. Cinquant’anni dopo entri nella villa per recuperare alcuni documenti. La porta si chiude alle tue spalle e la casa comincia a ricordare.</p><button class="primary" disabled>Vertical slice in preparazione</button></article></div>
+
+  <script>
+    const modal=document.getElementById('modal');
+    const openModal=()=>modal.classList.add('open');
+    document.getElementById('detailsBtn').onclick=openModal;
+    document.getElementById('mobileDetails').onclick=openModal;
+    document.getElementById('closeModal').onclick=()=>modal.classList.remove('open');
+    modal.onclick=e=>{if(e.target===modal)modal.classList.remove('open')};
+    document.getElementById('exploreBtn').onclick=()=>document.getElementById('roomsView').scrollIntoView({behavior:'smooth'});
+    document.querySelectorAll('[data-view="rooms"]').forEach(b=>b.onclick=()=>document.getElementById('roomsView').scrollIntoView({behavior:'smooth'}));
+    document.querySelectorAll('[data-view="home"]').forEach(b=>b.onclick=()=>window.scrollTo({top:0,behavior:'smooth'}));
+  </script>
+</body>
 </html>
